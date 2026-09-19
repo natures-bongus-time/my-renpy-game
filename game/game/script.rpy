@@ -4,8 +4,12 @@
     image bg whitehouse = "mist+dense.png"
     image bg room = "pra_a1_day1.png" 
     image bg death = "wallpaper2you_150233.jpg"
+    $ points = 0
 
 define e = Character("Eileen", color="#c8ffc8")
+define f = Character("???", color="#0e0c01")
+
+
 
 
 # The game starts here.
@@ -26,7 +30,7 @@ label start:
 
     # These display lines of dialogue.
 
-    e "Hello, and welcome to my game!."
+    e "OH MY GOD!!!!!"
 
     e "I've been waiting for someone to talk to." 
 
@@ -62,20 +66,37 @@ label stay:
         "What do you want to talk about?":
             jump nervous
 
-        "How.. how did I get here? what did you say about a game?":
+        "You. This is your fault. Because of you, I'm trapped here. What did you hope to accomplish?":
             jump dissmissive
 label dissmissive:
 
     scene bg death
-    e "DONT ASK QUESTIONS YOU DON'T WANT THE ANSWERS TO"
-    return
+    f "DONT ASK QUESTIONS YOU DON'T WANT THE ANSWERS TO"
+    f "WE'll PRETEND YOU DIDN'T SAY THAT, BUT I'LL BE WATCHING YOU."
+    $ points += 1 
+    jump nervous
+    
 
 label nervous:
 
+    scene bg room with dissolve
     show eileen_concerned
 
     e "I... don't know. I've been alone for so long, I don't know what I should talk about."
     e "*quietly* You won't leave me, right?"
+
+    menu:
+        "*Laughs* Of course I will. Like THEY left you. Like everyone you ever loved left you. It's always been your fault, you know that right? Like with Sa-":
+            $ points +=5
+            jump better
+        "I won't. I promise.":
+            jump better
+
+label better:
+
+    if points >= 3: 
+        return
+
     e "*shakes her head* Never mind. I'll enjoy however much time I get with you."
 
     show eileen_happy
@@ -89,20 +110,49 @@ label request:
     scene bg room
 
     show eileen_happy
+    if points >=3:
+        return
     menu:
         "Yes":
             jump movie 
-        "No.":
+
+        "Why not.":
+            jump movie
+
+        "I'd love to!":
+         $ points -= 1
+
+        "With a pathetic freak like you? ew. Get away from me.":
             jump death
 
+label request2:
+    scene bg room
+    
+    show eileen_happy
+    if points >=3:
+            return
+    menu:
+        "Yes":
+            jump movie 
+    
+        "Why not.":
+            jump movie
+    
+        "I'd love to!":
+            $ points -= 1
+            jump movie
+
+    
 label death:
 
     scene bg death
-    e "YOU SHOULDN'T HAVE SAID NO TO ME."
-    e "LET'S TRY THAT AGAIN"
-    jump request
+    f "YOU SHOULDN'T HAVE SAID NO TO HER."
+    f "LET'S TRY THAT AGAIN"
+    $ points += 1
+    jump request2
 
 label movie:
+
     return
 
 
