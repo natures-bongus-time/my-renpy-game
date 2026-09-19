@@ -3,7 +3,7 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define e = Character("Eileen")
+define e = Character("Eileen", color="#c8ffc8")
 
 
 # The game starts here.
@@ -14,7 +14,7 @@ label start:
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
 
-    scene bg room
+    scene bg room with dissolve
 
     # This shows a character sprite. A placeholder is used, but you can
     # replace it by adding a file named "eileen happy.png" to the images
@@ -24,10 +24,34 @@ label start:
 
     # These display lines of dialogue.
 
-    e "You've created a new Ren'Py game."
+    e "Hello, and welcome to my game!."
 
-    e "Once you add a story, pictures, and music, you can release it to the world!"
+    e "I've been waiting for someone to talk to." 
 
-    # This ends the game.
+    e "Will you talk to me?"
 
+    e "Do you want to talk inside or outside?."
+
+    menu:
+        "go outside":
+            jump outside
+
+        "stay in this room.":
+            jump stay
+
+label outside: 
+
+    scene bg whitehouse with dissolve
+    show eileen concerned
+
+    e "It's freezing out here!"
+    e "Lets go inside where it's warm"
+    return
+
+label stay:
+
+    show eileen happy
+
+    e "*Phew*"
+    e "It's a lot warmer in here"
     return
