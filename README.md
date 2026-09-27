@@ -1,1 +1,5 @@
-I LEARNED SO MUCH!!!!I think this was my favorite project so far, I got to do writing and game development!!!! the story's not my best work, but I'm proud of what I made.
+Eileen's hope
+a short visual novel made with ren'py
+initially made using the guide from snowglobe.
+it was a good way to learn ren'py and have some fun doing it.
+<img width="1784" height="1013" alt="Screenshot 2026-09-22 133015" src="https://github.com/user-attachments/assets/4ceb411d-c176-4751-bd8b-e0a4ffe8bb45" />
